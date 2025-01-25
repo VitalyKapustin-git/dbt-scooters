@@ -13,4 +13,3 @@ as
 )
 select age, avg(cn) as day_avg_cn from age_cte
 group by age
-;
