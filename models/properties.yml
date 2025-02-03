@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: "scooters_raw"
+    description: "Raw data provided by scooters service"
+    loader: "Ручная загрузка данных через dbeaver"
+    tables:
+      - name: "trips"
+        description: "Таблица с поездками"
+
+      - name: "users"
+        description: "Таблица с пользователями"
+
+models:
+  - name: "trips_prep"
+    description: "Предподготовленая вьюха для дальнейших трансформаций"
+    config:
+      materialized: "view"
+
+  - name: "trips_stat"
+    description: "Базовая статистика по всем поездкам"
+    config:
+      materialized: "table"
+
+  - name: "trips_stat_daily"
+    description: "Агрегированные данные за день"
+    config:
+      materialized: "table"
+      indexes:
+        - columns: ["date"]
+      
+  - name: "trips_age_daily"
+    description: "Агрегированные данные по возрастным группам за день"
+    +indexes:
+      - columns: ["date", "age"]
+
+  - name: "trips_age_daily_stat"
+    description: "Агрегаты, cреднее кол-во поездок и средняя выручка по возрастам"
+    +indexes:
+      - columns: ["date", "age"]
+
+          

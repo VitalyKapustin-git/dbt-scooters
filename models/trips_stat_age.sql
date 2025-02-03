@@ -1,15 +1,29 @@
 with
-age_cte
-as
-(
-	select 
-		t.started_at::date as date,
-		date_part('year', justify_interval(t.started_at - u.birth_date)) as age,
-		count(*) as cn 
-	from scooters_raw.trips t 
-	inner join scooters_raw.users u 
-		on u.id = t.user_id 
-	group by t.started_at::date, date_part('year', justify_interval(t.started_at - u.birth_date)) 
-)
-select age, avg(cn) as day_avg_cn from age_cte
-group by age
+    date_age_cte as (
+        select
+            date(t.started_at) as date,
+            extract(year from t.started_at) - extract(year from u.birth_date) as age
+        from
+            scooters_raw.trips as t
+            inner join scooters_raw.users as u on t.user_id = u.id
+    ),
+    count_cte as (
+        select
+            date,
+            age,
+            count(*) as trips
+        from
+            date_age_cte
+        group by
+            1,
+            2
+        )
+select
+    age,
+    avg(trips) as avg_trips
+from
+    count_cte
+group by
+    1
+order by
+    1

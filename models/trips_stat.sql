@@ -1,7 +1,9 @@
 select 
 	count(*) as trips,
 	count(distinct user_id) as users,
-	avg(t.finished_at - t.started_at) as avg_duration_m,
-	sum(price) / 100 as revenue_rub,
-	(count(price = 0 or null) / count(*)::real) * 100 as free_trips_pct
-from scooters_raw.trips t
+	avg(duration_s) / 60 as avg_duration_m,
+	sum(price_rub) as revenue_rub,
+	count(is_free or null) / cast(count(*) as real) * 100 as free_trips_pct,
+	sum(distance_m) / 1000 as sum_distance_km
+from 
+	{{ ref("trips_prep") }}
