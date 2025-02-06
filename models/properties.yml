@@ -39,4 +39,14 @@ models:
     +indexes:
       - columns: ["date", "age"]
 
+  - name: "trips_geom"
+    description: "Точки начала и окончания поездок для анализа стоянок самокатов"
+    config:
+      materialized: "view"
+
+  - name: "parking_start_stat"
+    description: "Статистика парковок"
+
+  - name: "parking_finish_stat"
+    description: "Статистика завершения поездок и парковок"
           
