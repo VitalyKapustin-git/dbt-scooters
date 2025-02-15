@@ -11,6 +11,9 @@ sources:
       - name: "users"
         description: "Таблица с пользователями"
 
+      - name: "events"
+        description: "ТСобытия пользователей с дубликатами"
+
 models:
   - name: "trips_prep"
     description: "Предподготовленая вьюха для дальнейших трансформаций"
@@ -49,4 +52,13 @@ models:
 
   - name: "parking_finish_stat"
     description: "Статистика завершения поездок и парковок"
+
+  - name: "trips_user"
+    description: "Точки начала и окончания поездки с привязкой к пользователям"
+    config:
+      materialized: "incremental"
           
+  - name: "events_clean"
+    description: "События без дублей"
+    config:
+      materialized: "incremental"
