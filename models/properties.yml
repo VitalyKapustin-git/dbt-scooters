@@ -76,3 +76,9 @@ models:
     description: "Number of simultaneous rides in time"
     config:
       materialized: "incremental"
+
+  - name: "companies"
+    description: "Данные по производителям самокатов в автопарке их кол-ву самокатов"
+
+  - name: "companies_trips"
+    description: "Статистика по среднему кол-ву поездок на самокат в разрезе производителей"
