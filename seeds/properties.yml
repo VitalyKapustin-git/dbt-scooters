@@ -10,3 +10,6 @@ seeds:
       description: "Справочник типов событий путешествий"
       config:
         delimeter: ","
+
+    - name: "age_groups"
+      description: "Словарь возрастных групп пользователей"

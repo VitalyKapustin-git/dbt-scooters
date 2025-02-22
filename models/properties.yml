@@ -92,3 +92,6 @@ models:
     description: "Процент отказов до старта поездки"
     config:
       materialized: "view"
+
+  - name: "trips_age_group"
+    description: ""
