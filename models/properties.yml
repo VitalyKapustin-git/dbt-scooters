@@ -82,3 +82,13 @@ models:
 
   - name: "companies_trips"
     description: "Статистика по среднему кол-ву поездок на самокат в разрезе производителей"
+
+  - name: "events_full"
+    description: "Данные по событиям во время поездок"
+    config:
+      materialized: "view"
+  
+  - name: "events_stat"
+    description: "Процент отказов до старта поездки"
+    config:
+      materialized: "view"

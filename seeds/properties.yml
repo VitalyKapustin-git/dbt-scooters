@@ -5,3 +5,8 @@ seeds:
       description: "Модели самокатов"
       config:
         delimeter: ","
+
+    - name: "event_types"
+      description: "Справочник типов событий путешествий"
+      config:
+        delimeter: ","
