@@ -39,7 +39,8 @@ cumsum_cte as (
     -- Integrate increment to get concurrency
     select
         "timestamp",
-        sum(increment) over (order by "timestamp") as concurrency
+        sum(increment) over (order by "timestamp") as concurrency,
+        {{ updated_at() }}
     from
         sum_cte
 )
